@@ -1,0 +1,55 @@
+.card_product {
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 33.4rem;
+
+  display: flex;
+  flex-direction: column;
+  .card_product_image {
+    padding: 4.5rem 6.7rem 1.8rem 5.7rem;
+    img {
+      width: 21rem;
+      height: 17rem;
+    }
+  }
+  .card_product_content {
+    padding: 0 2.3rem;
+    &.name {
+      margin: 0;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: #000000;
+    }
+    &.des {
+      margin: 0;
+      padding: 0.8rem 0 1.3rem 2.3rem;
+      font-weight: 300;
+      font-size: 2rem;
+
+      color: #cbc9c9;
+    }
+  }
+  .card_product_interact {
+    display: flex;
+
+    flex-basis: 50%;
+    align-items: end;
+    .card_product_btn {
+      height: 6.4rem;
+      border: none;
+      font-size: 2.4rem;
+      color: #000000;
+      cursor: pointer;
+      &.buy {
+        width: 17.5rem;
+        background: #9de167;
+        font-weight: 400;
+      }
+      &.price {
+        width: 16rem;
+        background: #dedddc;
+        font-weight: 600;
+      }
+    }
+  }
+}

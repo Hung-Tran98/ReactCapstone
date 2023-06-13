@@ -1,0 +1,50 @@
+.menu_home_template,.header_home_template{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    padding: 0 2.4rem;
+}
+
+.header_home_template{
+
+    justify-content: space-between;
+
+    background-color: #000000;
+
+    .header_right{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .header_search{
+
+            color: #FFFFFF;
+            font-size: 3rem;
+            font-weight: 300;
+
+        }
+        .header_navlink{
+
+            text-decoration: none;
+            font-weight: 300;
+            color: #F7F7F7;
+
+        }
+    }
+}
+
+.menu_home_template{
+    gap: 2rem;
+
+    .menu_link{
+        font-size: 2rem;
+        font-weight: 400;
+        color: #000000;
+        text-decoration: none;
+        box-shadow: 0 0.1rem #FFFFFF ;
+        transition: box-shadow .5s;
+    }
+    .menu_link:hover{
+        box-shadow: 0 0.1rem #000000 ;
+    }
+}
