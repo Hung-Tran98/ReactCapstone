@@ -9,6 +9,7 @@ import './Home.scss'
 
 
 function Home() {
+  // useScrollTop();
   const { listProduct } = useSelector(state => state.ProductReducer);
 
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Home() {
     getListProduct();
   }, [])
 
-  useScrollTop();
+  
   return (
     <>
       <CarouselHome />
