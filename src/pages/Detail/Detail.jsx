@@ -8,8 +8,6 @@ import { useScrollTop } from '../../hooks/useScrollTop'
 import ListProduct from '../../components/ListProduct/ListProduct'
 
 function Detail() {
-  // useScrollTop();
-
   const param = useParams()
   const dispatch = useDispatch();
 

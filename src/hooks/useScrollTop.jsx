@@ -8,5 +8,5 @@ export const useScrollTop = () => {
             top: 0,
             behavior: 'smooth'
         })
-    }, location)
+    }, [location])
 }
