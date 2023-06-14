@@ -2,7 +2,7 @@ import React from 'react'
 import './FooterHomeTemplate.scss'
 function FooterHomeTemplate() {
     return (
-        <footer>
+        <footer style={{paddingTop:'5.3rem'}}>
             <div className="footer_top">
                 <div className="footer_get">
                     <h2>get help</h2>

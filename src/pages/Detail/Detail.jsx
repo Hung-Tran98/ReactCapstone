@@ -3,19 +3,19 @@ import DetailProduct from '../../components/DetailProduct/DetailProduct'
 import './Detail.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductByIdAction } from '../../redux/slices/Product'
-import { useScrollTop } from '../../hooks/useScrollTop'
+import { getProductByIdThunk } from '../../redux/slices/Product'
 import ListProduct from '../../components/ListProduct/ListProduct'
+import { Skeleton } from 'antd';
 
 function Detail() {
   const param = useParams()
   const dispatch = useDispatch();
 
-  const { productDetail } = useSelector(state => state.ProductReducer)
+  const { productDetail, isLoading } = useSelector(state => state.ProductReducer)
 
   const getProdutById = async (id) => {
     try {
-      const action = getProductByIdAction(id)
+      const action = getProductByIdThunk(id)
       dispatch(action)
     } catch (error) {
       console.log(error)
@@ -24,7 +24,9 @@ function Detail() {
   useEffect(() => {
     getProdutById(param.detailId)
   }, [param.detailId])
-
+  if (isLoading) {
+    return <Skeleton active />
+  }
 
   return (
     <div>
