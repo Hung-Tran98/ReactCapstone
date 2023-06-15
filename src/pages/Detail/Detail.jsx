@@ -8,6 +8,7 @@ import ListProduct from '../../components/ListProduct/ListProduct'
 import { Skeleton } from 'antd';
 
 function Detail() {
+  
   const param = useParams()
   const dispatch = useDispatch();
 

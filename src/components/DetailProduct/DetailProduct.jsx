@@ -1,8 +1,13 @@
 import React from 'react'
 import './DetailProduct.scss'
+import { useState } from 'react';
 function DetailProduct(props) {
+    const [count, setCount] = useState(1)
     const { propsProductDetail } = props;
     const { size } = propsProductDetail;
+    if (count < 1) {
+        setCount(1);
+    }
 
     return (
         <div className='detail_product'>
@@ -20,9 +25,9 @@ function DetailProduct(props) {
                 </div>
                 <p>{propsProductDetail.price}$</p>
                 <div className="dentail_product_quanlity">
-                    <button>+</button>
-                    <p>1</p>
-                    <button>-</button>
+                    <button onClick={() => { setCount(count + 1) }}>+</button>
+                    <p>{count}</p>
+                    <button onClick={() => { setCount(count - 1) }}>-</button>
                 </div>
                 <button className='dentail_product_add'>Add to cart</button>
             </div>
