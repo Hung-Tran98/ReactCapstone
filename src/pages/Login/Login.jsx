@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.scss'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import axios from 'axios';
+import { saveLocalStorage } from '../../utils';
+import { ACCESSTOKEN } from '../../consts';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateIsLogin } from '../../redux/slices/Product';
 
 const schemaLogin = Yup.object({
   email: Yup.string().email().required('Email is required'),
@@ -25,14 +29,15 @@ function Login() {
           "email": values.email,
           "password": values.passWord,
         })
-
-        navigate('/profile')
         console.log(resp)
+        saveLocalStorage(ACCESSTOKEN, resp.data.content.accessToken)
+        navigate('/profile')
       } catch (error) {
         console.log(error)
       }
     }
   })
+
   return (
     <div className='login'>
       <h2>Login</h2>

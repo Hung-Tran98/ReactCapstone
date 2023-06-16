@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './DetailProduct.scss'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateCart, updateCountProduct } from '../../redux/slices/Product';
 function DetailProduct(props) {
-    const [count, setCount] = useState(1)
+    const [cart, setCart] = useState([])
+    const [count, setCount] = useState(0)
+    const [countProduct, setCountProduct] = useState(0);
+    const dispatch = useDispatch();
     const { propsProductDetail } = props;
     const { size } = propsProductDetail;
     if (count < 1) {
-        setCount(1);
+        setCount(1)
     }
-
+    dispatch(updateCountProduct(countProduct))
+    dispatch(updateCart(cart))
     return (
         <div className='detail_product'>
             <div className="detail_product_left">
@@ -25,11 +31,15 @@ function DetailProduct(props) {
                 </div>
                 <p>{propsProductDetail.price}$</p>
                 <div className="dentail_product_quanlity">
-                    <button onClick={() => { setCount(count + 1) }}>+</button>
+                    <button onClick={() => {
+                        setCount(count + 1)
+                    }}>+</button>
                     <p>{count}</p>
-                    <button onClick={() => { setCount(count - 1) }}>-</button>
+                    <button onClick={() => {
+                        setCount(count - 1)
+                    }}>-</button>
                 </div>
-                <button className='dentail_product_add'>Add to cart</button>
+                <button className='dentail_product_add' onClick={() => { setCountProduct(countProduct + 1); setCart(propsProductDetail) }}>Add to cart</button>
             </div>
         </div>
     )

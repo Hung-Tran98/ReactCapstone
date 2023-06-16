@@ -1,0 +1,61 @@
+.cart {
+  background: #f5f5f5;
+  padding-bottom: 16rem;
+  h2 {
+    font-weight: 400;
+    font-size: 4rem;
+    margin-bottom: 4.2rem;
+    margin-left: 11.2rem;
+    padding-top: 4.8rem;
+  }
+  table {
+    width: 120rem;
+    padding-left: 7.4rem;
+    padding-top: 7.1rem;
+    background: #FFFFFF;
+    thead {
+      background: #d9d9d9;
+      tr {
+        th {
+          font-family: Inter;
+          font-weight: 400;
+          font-size: 2rem;
+          color: #000000;
+        }
+        .icon {
+          padding: 1.8rem 0;
+          padding-left: 1.6rem;
+          width: 2.4rem;
+        }
+        .id {
+          padding-left: 4.1rem;
+          width: 1.8rem;
+        }
+        .img {
+          padding-left: 5.7rem;
+          width: 3.5rem;
+        }
+        .name {
+          padding-left: 5.7rem;
+          width: 5.2rem;
+        }
+        .price {
+          padding-left: 20.4rem;
+          width: 4.9rem;
+        }
+        .quantity {
+          padding-left: 11.8rem;
+          width: 7.9rem;
+        }
+        .total {
+          padding-left: 9.9rem;
+          width: 4.3rem;
+        }
+        .active {
+          padding-left: 15.1rem;
+          width: 6rem;
+        }
+      }
+    }
+  }
+}
