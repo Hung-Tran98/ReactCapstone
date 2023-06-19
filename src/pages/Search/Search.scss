@@ -1,0 +1,73 @@
+.search {
+  .search_product,
+  .search_sort {
+    label {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: rgba(0, 0, 0, 0.6);
+      display: block;
+    }
+    input {
+      font-family: Roboto;
+      font-weight: 400;
+      font-size: 1.6rem;
+      padding: 16px 12px 14px 14px;
+      width: 443px;
+      height: 54px;
+      background: rgba(33, 33, 33, 0.08);
+      border-radius: 4px 4px 0px 0px;
+      border: none;
+    }
+  }
+  .search_product {
+    margin-left: 4.4rem;
+    margin-top: 6.8rem;
+    .search_content {
+      display: flex;
+      button {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.4rem;
+        width: 12rem;
+        height: 4.8rem;
+        color: #ffffff;
+        margin-left: 3.7rem;
+        text-transform: uppercase;
+        background: #6200ee;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14),
+          0px 1px 10px rgba(0, 0, 0, 0.12), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
+        border: none;
+      }
+    }
+  }
+  .search_sort {
+    .title {
+      font-size: 4rem;
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 0;
+      margin-top: 4.4rem;
+      line-height: 4.8rem;
+      padding: 1.2rem 0 1.4rem 2.9rem;
+      height: 7rem;
+      background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
+    }
+    label,
+    .search_text {
+      margin-left: 9.8rem;
+    }
+    label {
+      margin-top: 2.7rem;
+    }
+    .search_text {
+      input {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
