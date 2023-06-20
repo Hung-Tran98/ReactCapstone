@@ -39,19 +39,19 @@ function Profile() {
           <div className='profile_center'>
             <div className="profile_content">
               <label>Email</label>
-              <input placeholder='email' name='email' type='text' {...formik.getFieldProps('email')} />
+              <input placeholder={userProfile.email} name='email' type='text' {...formik.getFieldProps('email')} />
               {formik.errors.email && formik.touched.email && <p style={{ color: '#F50E0E', fontFamily: 'Roboto', fontWeight: 400, fontSize: '1.2rem' }}>{formik.errors.email}</p>}
             </div>
             <div className="profile_content">
               <label>Phone</label>
-              <input placeholder='phone' name='phone' type='text' {...formik.getFieldProps('phone')} />
+              <input placeholder={userProfile.phone} name='phone' type='text' {...formik.getFieldProps('phone')} />
               {formik.errors.phone && formik.touched.phone && <p style={{ color: '#F50E0E', fontFamily: 'Roboto', fontWeight: 400, fontSize: '1.2rem' }}>{formik.errors.phone}</p>}
             </div>
           </div>
           <div className="profile_end">
             <div className="profile_content">
               <label>Name</label>
-              <input placeholder='name' name='name' type='text' {...formik.getFieldProps('name')} />
+              <input placeholder={userProfile.name} name='name' type='text' {...formik.getFieldProps('name')} />
               {formik.errors.name && formik.touched.name && <p style={{ color: '#F50E0E', fontFamily: 'Roboto', fontWeight: 400, fontSize: '1.2rem' }}>{formik.errors.name}</p>}
             </div>
             <div className="profile_content">
@@ -62,11 +62,11 @@ function Profile() {
             <div class="profile_radio">
               <label>Gender</label>
               <div className="radio_button">
-                <input type="radio" name='gender' value={true} />
+                {userProfile.gender ? <input type="radio" name='gender' value={true} checked /> : <input type="radio" name='gender' value={true} />}
                 <label>Male</label>
               </div>
               <div className="radio_button"  >
-                <input type="radio" name='gender' value={false} />
+                {userProfile.gender === false ? <input type="radio" name='gender' value={false} checked /> : <input type="radio" name='gender' value={false} />}
                 <label>Femail</label>
               </div>
               <button>Update</button>
@@ -95,12 +95,12 @@ function Profile() {
             </thead>
             <tbody>
               <tr>
-                <td style={{ paddingLeft: '4.1rem' }}>{cart.id}</td>
+                <td style={{ paddingLeft: '4.1rem' }}>{cart.id ? cart.id : '0'}</td>
                 <td style={{ paddingLeft: '5.7rem' }}><img src={cart.image} alt="..." style={{ width: '8.5rem' }} /></td>
-                <td style={{ paddingLeft: '5.7rem' }}>{cart.name}</td>
-                <td style={{ paddingLeft: '20.4rem' }}>{cart.price}$</td>
+                <td style={{ paddingLeft: '5.7rem' }}>{cart.name ? cart.name : 'name'}</td>
+                <td style={{ paddingLeft: '20.4rem' }}>{cart.price ? cart.price : '0'}$</td>
                 <td style={{ paddingLeft: '11.8rem' }}>{countProduct}</td>
-                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct}$</td>
+                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct ? cart.price * countProduct : '0'}$</td>
               </tr>
             </tbody>
           </table>
@@ -118,12 +118,12 @@ function Profile() {
             </thead>
             <tbody>
               <tr>
-                <td style={{ paddingLeft: '4.1rem' }}>{cart.id}</td>
+                <td style={{ paddingLeft: '4.1rem' }}>{cart.id ? cart.id : '0'}</td>
                 <td style={{ paddingLeft: '5.7rem' }}><img src={cart.image} alt="..." style={{ width: '8.5rem' }} /></td>
-                <td style={{ paddingLeft: '5.7rem' }}>{cart.name}</td>
-                <td style={{ paddingLeft: '20.4rem' }}>{cart.price}$</td>
+                <td style={{ paddingLeft: '5.7rem' }}>{cart.name ? cart.name : 'name'}</td>
+                <td style={{ paddingLeft: '20.4rem' }}>{cart.price ? cart.price : '0'}$</td>
                 <td style={{ paddingLeft: '11.8rem' }}>{countProduct}</td>
-                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct}$</td>
+                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct ? cart.price * countProduct : '0'}$</td>
               </tr>
             </tbody>
           </table>

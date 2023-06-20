@@ -26,7 +26,7 @@ function HeaderHomeTemplate() {
                 <LogoIcon />
                 <div className="header_right">
                     <img src={Search} alt="" />
-                    <p className='header_search'>Search</p>
+                    <p className='header_search' onClick={()=>{navigate('/search')}}>Search</p>
                     <img onClick={() => {
                         userProfile.name ? navigate('/cart') : navigate('/login')
                     }} src={CartIcon} /><label style={{ color: 'white' }}>{countProduct < 1 ? '' : (countProduct)}</label>
