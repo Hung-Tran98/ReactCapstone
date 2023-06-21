@@ -70,7 +70,7 @@ function Profile() {
                 {userProfile.gender === false ? <input type="radio" name='gender' value={false} checked /> : <input type="radio" name='gender' value={false} />}
                 <label>Femail</label>
               </div>
-              <button>Update</button>
+              <button type='submit'>Update</button>
             </div >
           </div>
         </form>
@@ -86,7 +86,7 @@ function Profile() {
             console.log(ordersHistory.orderDetail.name)
             return (
               <Fragment key={ordersHistory.id}>
-                <p className='title_order'>+ Orders have been placed on {ordersHistory.date}</p>
+                <p className='title_order'>+ Orders have been placed on {ordersHistory.date.slice(0,-9)}</p>
                 <table cellSpacing={0}>
                   <thead>
                     <tr>
