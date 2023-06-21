@@ -16,6 +16,7 @@ const initialState = {
   isLoading: false,
   cart: [],
   countProduct: 0,
+  count: 1
 };
 
 const ProductSlice = createSlice({
@@ -29,6 +30,10 @@ const ProductSlice = createSlice({
     updateCountProduct: (state, action) => {
       // console.log(action)
       state.countProduct = action.payload;
+    },
+    updateCount: (state, action) => {
+      // console.log(action)
+      state.count = action.payload;
     },
     updateIsLogin: (state, action) => {
       state.isLogin = action.payload;
@@ -48,7 +53,7 @@ const ProductSlice = createSlice({
     });
   },
 });
-export const { setListProduct, updateCountProduct, updateIsLogin, updateCart } =
+export const { setListProduct, updateCountProduct, updateIsLogin, updateCart, updateCount } =
   ProductSlice.actions;
 
 export default ProductSlice.reducer;

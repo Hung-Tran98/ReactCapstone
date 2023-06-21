@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import './DetailProduct.scss'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateCart, updateCountProduct } from '../../redux/slices/Product';
+import { updateCart, updateCount, updateCountProduct } from '../../redux/slices/Product';
 function DetailProduct(props) {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([{}])
     const [count, setCount] = useState(0)
     const [countProduct, setCountProduct] = useState(0);
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ function DetailProduct(props) {
     }
     dispatch(updateCountProduct(countProduct))
     dispatch(updateCart(cart))
+    dispatch(updateCount(count))
     return (
         <div className='detail_product'>
             <div className="detail_product_left">
@@ -39,7 +40,7 @@ function DetailProduct(props) {
                         setCount(count - 1)
                     }}>-</button>
                 </div>
-                <button className='dentail_product_add' onClick={() => { setCountProduct(countProduct + 1); setCart(propsProductDetail) }}>Add to cart</button>
+                <button className='dentail_product_add' onClick={() => { setCountProduct(countProduct + 1); setCart([propsProductDetail]) }}>Add to cart</button>
             </div>
         </div>
     )

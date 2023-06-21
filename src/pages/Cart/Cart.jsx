@@ -1,43 +1,94 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cart.scss'
 import CheckIcon from '../../assets/icons/CheckIcon'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateCart, updateCount, updateCountProduct } from '../../redux/slices/Product'
+import axios from 'axios'
 function Cart() {
-  const { cart, countProduct } = useSelector(state => state.ProductReducer)
+  const dispatch = useDispatch()
+  const { cart, count } = useSelector(state => state.ProductReducer)
+  const { userProfile } = useSelector(state => state.UserReducer)
+  console.log(count)
+  if (count < 1) {
+    dispatch(updateCount(1))
+  }
+  const handleChangeQuantity = (num) => {
+    dispatch(updateCount(count + num))
+  }
+  const handleDeleteProductId = (id) => {
+
+    const newCart = cart.filter((item) => item.id !== id)
+
+    dispatch(updateCart(newCart))
+    dispatch(updateCountProduct(0))
+  }
+  const postProductOrder = async (id, count, email) => {
+    try {
+      console.log(id)
+      console.log(count)
+      console.log(email)
+      const resp = await axios.post('https://shop.cyberlearn.vn/api/Users/order', {
+        "orderDetail": [
+          {
+            "productId": id,
+            "quantity": count
+          }
+        ],
+        "email": email
+      })
+      console.log(resp)
+      alert('Success!')
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className='cart'>
       <h2>Cart</h2>
-      <hr style={{ width: '84%', border: '1px solid #DEDDDC', marginBottom: '5.2rem', margin: 'auto' }} />
+      <hr />
       <table cellSpacing={0}>
         <thead>
           <tr>
-            <th className='icon'><CheckIcon /></th>
-            <th className='id'>id</th>
-            <th className='img'>img</th>
-            <th className='name'>name</th>
-            <th className='price'>price</th>
-            <th className='quantity'>quantity</th>
-            <th className='total'>total</th>
-            <th className='action'>action</th>
+            <th className=''><CheckIcon /></th>
+            <th className=''>id</th>
+            <th className=''>img</th>
+            <th className=''>name</th>
+            <th className=''>price</th>
+            <th className=''>quantity</th>
+            <th className=''>total</th>
+            <th className='cart_action'>action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th style={{ paddingLeft: '1.6rem' }}><CheckIcon /></th>
-            <td style={{ paddingLeft: '4.1rem' }}>{cart.id}</td>
-            <td style={{ paddingLeft: '5.7rem' }}><img src={cart.image} alt="..." style={{ width: '8.5rem' }} /></td>
-            <td style={{ paddingLeft: '5.7rem' }}>{cart.name}</td>
-            <td style={{ paddingLeft: '20.4rem' }}>{cart.price}$</td>
-            <td style={{ paddingLeft: '11.8rem' }}>{countProduct}</td>
-            <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct}$</td>
-            <td style={{ paddingLeft: '7rem', marginTop: '3rem', display: 'flex', alignItems: 'center' }}>
-              <button style={{ textTransform: 'uppercase', width: '10rem', border: 'none', marginLeft: '2.1rem', padding: '0.6rem 0.6rem 0.6rem 0.8rem', background: '#6200EE', color: '#FFFFFF', fontFamily: 'Roboto', fontsize: '1.4rem', fontWeight: 500, letterSpacing: '0.125rem', boxShadow: '0rem 0.8rem 1rem rgba(0, 0, 0, 0.14), 0rem 0.3rem 1.4rem rgba(0, 0, 0, 0.12), 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2)', borderRadius: '0.4rem' }}>Edit</button>
-              <button style={{ textTransform: 'uppercase', width: '10rem', border: 'none', marginLeft: '2.1rem', padding: '0.6rem 0.6rem 0.6rem 0.8rem', background: '#EB5757', color: '#FFFFFF', fontFamily: 'Roboto', fontsize: '1.4rem', fontWeight: 500, letterSpacing: '0.125rem', boxShadow: '0rem 0.8rem 1rem rgba(0, 0, 0, 0.14), 0rem 0.3rem 1.4rem rgba(0, 0, 0, 0.12), 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2)', borderRadius: '0.4rem' }}>Delete</button>
-            </td>
-          </tr>
+          {cart.map(cart => {
+            return (
+              <tr>
+                <td className='td_icon'><CheckIcon /></td>
+                <td className='td_id'>{cart.id ? cart.id : '0'}</td>
+                <td className='td_image'><img src={cart.image} alt="..." /></td>
+                <td className='td_name'>{cart.name ? cart.name : 'name'}</td>
+                <td className='td_price'>{cart.price ? cart.price : '0'}</td>
+                <td className='td_quantity'> <button className='up' onClick={() => handleChangeQuantity(1)}>+</button> <input type="text" value={count} /> <button className='down' onClick={() => handleChangeQuantity(-1)}>-</button></td>
+                <td className='td_total'>{cart.price * count ? cart.price * count : '0'}</td>
+                <td className='td_action'>
+                  <button className='action_edit'>Edit</button>
+                  <button className='action_delete' onClick={() => { handleDeleteProductId(cart.id) }}>Delete</button>
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
 
+
       </table>
+      {cart.map(cart => {
+        return (
+          <button className='submit' onClick={() => postProductOrder(cart.id, count, userProfile.email)}>submit order</button>
+        )
+      })}
+
+
     </div>
   )
 }

@@ -29,7 +29,7 @@ function HeaderHomeTemplate() {
                     <p className='header_search' onClick={()=>{navigate('/search')}}>Search</p>
                     <img onClick={() => {
                         userProfile.name ? navigate('/cart') : navigate('/login')
-                    }} src={CartIcon} /><label style={{ color: 'white' }}>{countProduct < 1 ? '' : (countProduct)}</label>
+                    }} src={CartIcon} /><label style={{ color: 'white' }}>{countProduct < 1 ? '' : '('+(countProduct)+')'}</label>
                     {userProfile.name ? <>
                         <p style={{ color: 'white',cursor:'pointer' }} onClick={()=>navigate('/profile')}>{userProfile.name}</p>
                         <button onClick={handleLogout} style={{ background: 'black', color: 'white', border: 'solid 0.1rem red' }}>Logout</button>
