@@ -7,7 +7,6 @@ import { axoisWithAuth } from "../../services/config.services";
 const initialState = {
   userProfile: {},
 };
-
 export const getProfileThunk = createAsyncThunk(
   "UserSlice/getProfileThunk",
   async () => {

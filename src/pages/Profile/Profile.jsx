@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProfileThunk } from '../../redux/slices/User'
 import './Profile.scss'
@@ -25,6 +25,7 @@ function Profile() {
   })
   const { cart, countProduct } = useSelector(state => state.ProductReducer)
   const { userProfile } = useSelector(state => state.UserReducer)
+  console.log(userProfile.ordersHistory)
   const dispatch = useDispatch()
   useEffect(() => {
     const actionThunk = getProfileThunk();
@@ -81,52 +82,43 @@ function Profile() {
         <label className='order'>Order history</label>
         <label className='favourite'>Favourite</label>
         <div style={{ backgroundColor: '#FFFFFF' }}>
-          <p className='title_order'>+ Orders have been placed on 09 - 19 - 2020</p>
-          <table cellSpacing={0}>
-            <thead>
-              <tr>
-                <th className='id'>id</th>
-                <th className='img'>img</th>
-                <th className='name'>name</th>
-                <th className='price'>price</th>
-                <th className='quantity'>quantity</th>
-                <th className='total'>total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ paddingLeft: '4.1rem' }}>{cart.id ? cart.id : '0'}</td>
-                <td style={{ paddingLeft: '5.7rem' }}><img src={cart.image} alt="..." style={{ width: '8.5rem' }} /></td>
-                <td style={{ paddingLeft: '5.7rem' }}>{cart.name ? cart.name : 'name'}</td>
-                <td style={{ paddingLeft: '20.4rem' }}>{cart.price ? cart.price : '0'}$</td>
-                <td style={{ paddingLeft: '11.8rem' }}>{countProduct}</td>
-                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct ? cart.price * countProduct : '0'}$</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className='title_order'>+ Orders have been placed on 09 - 19 - 2020</p>
-          <table cellSpacing={0}>
-            <thead>
-              <tr>
-                <th className='id'>id</th>
-                <th className='img'>img</th>
-                <th className='name'>name</th>
-                <th className='price'>price</th>
-                <th className='quantity'>quantity</th>
-                <th className='total'>total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ paddingLeft: '4.1rem' }}>{cart.id ? cart.id : '0'}</td>
-                <td style={{ paddingLeft: '5.7rem' }}><img src={cart.image} alt="..." style={{ width: '8.5rem' }} /></td>
-                <td style={{ paddingLeft: '5.7rem' }}>{cart.name ? cart.name : 'name'}</td>
-                <td style={{ paddingLeft: '20.4rem' }}>{cart.price ? cart.price : '0'}$</td>
-                <td style={{ paddingLeft: '11.8rem' }}>{countProduct}</td>
-                <td style={{ paddingLeft: '9.9rem' }}>{cart.price * countProduct ? cart.price * countProduct : '0'}$</td>
-              </tr>
-            </tbody>
-          </table>
+          {userProfile.ordersHistory?.map(ordersHistory => {
+            console.log(ordersHistory.orderDetail.name)
+            return (
+              <Fragment key={ordersHistory.id}>
+                <p className='title_order'>+ Orders have been placed on {ordersHistory.date}</p>
+                <table cellSpacing={0}>
+                  <thead>
+                    <tr>
+                      <th className='id'>id</th>
+                      <th className='img'>img</th>
+                      <th className='name'>name</th>
+                      <th className='price'>price</th>
+                      <th className='quantity'>quantity</th>
+                      <th className='total'>total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ paddingLeft: '4.1rem' }}>{ordersHistory.id}</td>
+                      {ordersHistory.orderDetail?.map(orderDetail => {
+                        return (
+                          <>
+                            <td style={{ paddingLeft: '5.7rem' }}><img src={orderDetail.image} alt="..." style={{ width: '8.5rem' }} /></td>
+                            <td style={{ paddingLeft: '5.7rem' }}>{orderDetail.name}</td>
+                            <td style={{ paddingLeft: '20.4rem' }}>{orderDetail.price}$</td>
+                            <td style={{ paddingLeft: '11.8rem' }}>{orderDetail.quantity}</td>
+                            <td style={{ paddingLeft: '9.9rem' }}>{orderDetail.price * orderDetail.quantity}$</td>
+                          </>
+                        )
+                      })}
+
+                    </tr>
+                  </tbody>
+                </table>
+              </Fragment>
+            )
+          })}
         </div>
 
       </div>
