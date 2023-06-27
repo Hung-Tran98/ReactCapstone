@@ -71,4 +71,11 @@
       }
     }
   }
+  .search_view {
+    display: flex;
+    gap: 3.5rem 6.7rem;
+    padding: 3.5rem 0 10.4rem 9.9rem;
+
+    flex-wrap: wrap;
+  }
 }
